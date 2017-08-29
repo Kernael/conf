@@ -59,7 +59,6 @@ values."
      helm
      yaml
      erlang
-     pdf-tools
      emoji
      latex
      typescript
