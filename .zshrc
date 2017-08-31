@@ -109,6 +109,12 @@ function panicmode {
 
 alias panicmode=panicmode
 
+function search {
+    find . -name "*$1*"
+}
+
+alias search=search
+
 export HISTSIZE=100000
 
 if ! [ -n "$TMUX" ]; then
