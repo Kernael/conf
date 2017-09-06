@@ -93,7 +93,6 @@ for color in {000..255}; do
 done
 
 alias l='ls -lah'
-alias ls='ls -lah'
 alias ..='cd ..'
 alias dontpanic="ping www.google.com"
 alias bex="bundle exec"
