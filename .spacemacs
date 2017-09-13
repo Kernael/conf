@@ -378,7 +378,7 @@ you should place your code here."
   (evil-ex-define-cmd "ESlintDisable" 'eslint-disable)
 
   (rvm-use-default)
-
+  (require 'helm-bookmark)
   (add-hook 'projectile-after-switch-project-hook 'rvm-use)
 
   (add-hook 'css-mode-hook 'my-rainbow-mode-hook)
