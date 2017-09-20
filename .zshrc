@@ -94,14 +94,23 @@ done
 
 alias l='ls -lah'
 alias ..='cd ..'
-alias dontpanic="ping www.google.com"
 alias bex="bundle exec"
 alias ec="emacsclient --no-wait"
+
+function dontpanic {
+    if [ -z "$1" ]; then
+        ping www.google.com
+    else
+        ping $1
+    fi
+}
+
+alias dontpanic=dontpanic
 
 function panicmode {
     while true
     do
-        dontpanic
+        dontpanic $1
         sleep 2
     done
 }
