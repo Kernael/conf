@@ -129,7 +129,7 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 
 export NVM_DIR="$HOME/.nvm"
-alias loadnvm="sh $NVM_DIR/nvm.sh"
+alias loadnvm="source $NVM_DIR/nvm.sh && sh $NVM_DIR/nvm.sh"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
