@@ -47,7 +47,6 @@ values."
      ruby
      ruby-on-rails
      colors
-     games
      python
      yaml
      html
@@ -60,8 +59,6 @@ values."
      yaml
      erlang
      emoji
-     latex
-     typescript
      osx
      ;; (shell :variables
      ;;        shell-default-height 30
