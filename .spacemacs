@@ -417,6 +417,8 @@ you should place your code here."
   (add-hook 'react-mode-hook 'auto-complete-mode)
   (add-hook 'ruby-mode-hook 'auto-complete-mode)
 
+  (setq powerline-default-separator 'utf-8)
+
   ;; (setq ruby-use-smie nil)
 
   ;; (defadvice ruby-indent-line (after unindent-closing-paren activate)
