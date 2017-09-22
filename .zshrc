@@ -142,3 +142,5 @@ alias loadnvm="source $NVM_DIR/nvm.sh && sh $NVM_DIR/nvm.sh"
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
