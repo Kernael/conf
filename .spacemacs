@@ -376,7 +376,7 @@ you should place your code here."
 
   (rvm-use-default)
   (require 'helm-bookmark)
-  (add-hook 'projectile-after-switch-project-hook 'rvm-use)
+  (add-hook 'projectile-after-switch-project-hook 'rvm-activate-corresponding-ruby)
 
   (add-hook 'css-mode-hook 'my-rainbow-mode-hook)
   (add-hook 'react-mode-hook 'my-rainbow-mode-hook)
