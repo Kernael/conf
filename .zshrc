@@ -98,24 +98,18 @@ alias bex="bundle exec"
 alias ec="emacsclient --no-wait"
 
 function dontpanic {
-    if [ -z "$1" ]; then
-        ping www.google.com
-    else
-        ping $1
-    fi
-}
-
-alias dontpanic=dontpanic
-
-function panicmode {
     while true
     do
-        dontpanic $1
+        if [ -z "$1" ]; then
+            ping www.google.com
+        else
+            ping $1
+        fi
         sleep 2
     done
 }
 
-alias panicmode=panicmode
+alias dontpanic=dontpanic
 
 function search {
     find . -name "*$1*"
