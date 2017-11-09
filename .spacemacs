@@ -419,6 +419,7 @@ you should place your code here."
 
   (add-hook 'react-mode-hook 'auto-complete-mode)
   (add-hook 'ruby-mode-hook 'auto-complete-mode)
+  (add-hook 'web-mode-hook 'auto-complete-mode)
 
   (setq powerline-default-separator 'utf-8)
 
