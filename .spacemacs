@@ -381,6 +381,8 @@ before packages are loaded."
 
   (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
   (setq ruby-insert-encoding-magic-comment nil)
+  (setq ruby-deep-indent-paren nil)
+  (setq ruby-use-smie nil)
 
   (setq web-mode-markup-indent-offset 2)
   (setq js2-basic-offset 2)
@@ -397,6 +399,12 @@ before packages are loaded."
   (add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode)
 
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+
+  (defun my-rainbow-mode-hook ()
+    (rainbow-mode 1)
+    )
+  (add-hook 'css-mode-hook 'my-rainbow-mode-hook)
+  (add-hook 'react-mode-hook 'my-rainbow-mode-hook)
 
   (defun binding-for-mode ()
     (cond ((string-equal "elixir-mode" major-mode) "require IEx; IEx.pry")
