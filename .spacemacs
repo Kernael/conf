@@ -397,6 +397,40 @@ before packages are loaded."
   (add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode)
 
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+
+  (defun binding-for-mode ()
+    (cond ((string-equal "elixir-mode" major-mode) "require IEx; IEx.pry")
+          ((string-equal "ruby-mode" major-mode) "require 'pry'; binding.pry")
+          ((string-equal "web-mode" major-mode) "<% require 'pry'; binding.pry %>")
+          (t "none")))
+  (defun pry-binding () (interactive)
+         (evil-open-above 1)
+         (insert (binding-for-mode))
+         (call-interactively 'evil-indent-line)
+         (evil-normal-state)
+         (save-buffer)
+         )
+  (evil-ex-define-cmd "Pry" 'pry-binding)
+
+  (defun reactotron-log () (interactive)
+         (evil-open-above 1)
+         (insert "Reactotron.log()")
+         (evil-open-above 1)
+         (insert "const Reactotron = require('reactotron-react-native').default;")
+         (call-interactively 'evil-indent-line)
+         (evil-normal-state)
+         (save-buffer)
+         )
+  (evil-ex-define-cmd "Reactotron" 'reactotron-log)
+
+  (defun eslint-disable () (interactive)
+         (evil-open-above 1)
+         (insert "// eslint-disable-next-line ")
+         (call-interactively 'evil-indent-line)
+         (evil-normal-state)
+         (save-buffer)
+         )
+  (evil-ex-define-cmd "ESlintDisable" 'eslint-disable)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -413,7 +447,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (eyebrowse evil-matchit ace-window smartparens evil flycheck helm avy org-plus-contrib magit git-commit projectile yaml-mode ws-butler with-editor winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree toc-org tagedit symon string-inflection spaceline solarized-theme smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails popwin persp-mode pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-bullets org-brain open-junk-file ob-elixir neotree move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag goto-chg google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav editorconfig dumb-jump company-web company-tern company-statistics column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode chruby bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent adaptive-wrap ace-link ace-jump-helm-line ac-ispell))))
+    (use-package org-bullets evil-surround evil-org bind-key markdown-mode magit with-editor js2-mode yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen toc-org tagedit symon string-inflection spaceline solarized-theme smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails popwin persp-mode pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-brain open-junk-file ob-elixir neotree move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav editorconfig dumb-jump diminish company-web company-tern company-statistics column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode chruby bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
