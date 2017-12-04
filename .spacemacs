@@ -50,7 +50,7 @@ This function should only modify configuration layer settings."
      syntax-checking
      ;; version-control
      elixir
-     ruby
+     (ruby :variables ruby-enable-enh-ruby-mode t)
      ruby-on-rails
      colors
      yaml
@@ -379,10 +379,10 @@ before packages are loaded."
   (setq magit-diff-refine-hunk 'all)
   (setq magit-log-arguments '("-n256" "--graph" "--decorate" "--color"))
 
-  (add-hook 'ruby-mode-hook 'rvm-activate-corresponding-ruby)
-  (setq ruby-insert-encoding-magic-comment nil)
-  (setq ruby-deep-indent-paren nil)
-  (setq ruby-use-smie nil)
+  (add-hook 'enh-ruby-mode-hook 'rvm-activate-corresponding-ruby)
+  (defun remove-enh-magic-comment ()
+    (remove-hook 'before-save-hook 'enh-ruby-mode-set-encoding t))
+  (add-hook 'enh-ruby-mode-hook 'remove-enh-magic-comment)
 
   (setq web-mode-markup-indent-offset 2)
   (setq js2-basic-offset 2)
@@ -396,7 +396,7 @@ before packages are loaded."
 
   (add-hook 'web-mode-hook 'highlight-indentation-current-column-mode)
   (add-hook 'yaml-mode-hook 'highlight-indentation-current-column-mode)
-  (add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode)
+  (add-hook 'enh-ruby-mode-hook 'highlight-indentation-current-column-mode)
 
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
 
@@ -408,7 +408,7 @@ before packages are loaded."
 
   (defun binding-for-mode ()
     (cond ((string-equal "elixir-mode" major-mode) "require IEx; IEx.pry")
-          ((string-equal "ruby-mode" major-mode) "require 'pry'; binding.pry")
+          ((string-equal "enh-ruby-mode" major-mode) "require 'pry'; binding.pry")
           ((string-equal "web-mode" major-mode) "<% require 'pry'; binding.pry %>")
           (t "none")))
   (defun pry-binding () (interactive)
@@ -455,7 +455,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package org-bullets evil-surround evil-org bind-key markdown-mode magit with-editor js2-mode yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen toc-org tagedit symon string-inflection spaceline solarized-theme smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails popwin persp-mode pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-brain open-junk-file ob-elixir neotree move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav editorconfig dumb-jump diminish company-web company-tern company-statistics column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode chruby bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (enh-ruby-mode use-package org-bullets evil-surround evil-org bind-key markdown-mode magit with-editor js2-mode yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen toc-org tagedit symon string-inflection spaceline solarized-theme smeargle slim-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor rubocop rspec-mode robe reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails popwin persp-mode pbcopy password-generator paradox osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-download org-brain open-junk-file ob-elixir neotree move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode launchctl json-mode js2-refactor js-doc info+ indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav editorconfig dumb-jump diminish company-web company-tern company-statistics column-enforce-mode color-identifiers-mode coffee-mode clean-aindent-mode chruby bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
