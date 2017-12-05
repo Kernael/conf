@@ -5,3 +5,5 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$FG[033]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$FG[001]%}✗"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}) %{$FG[048]%}✔"
+
+RPROMPT='$(date +%T)'
