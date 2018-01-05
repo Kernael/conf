@@ -379,7 +379,8 @@ before packages are loaded."
   (setq magit-diff-refine-hunk 'all)
   (setq magit-log-arguments '("-n256" "--graph" "--decorate" "--color"))
 
-  (add-hook 'enh-ruby-mode-hook 'rvm-activate-corresponding-ruby)
+  (rvm-use-default)
+
   (defun remove-enh-magic-comment ()
     (remove-hook 'before-save-hook 'enh-ruby-mode-set-encoding t))
   (add-hook 'enh-ruby-mode-hook 'remove-enh-magic-comment)
