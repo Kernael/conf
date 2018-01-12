@@ -376,7 +376,7 @@ before packages are loaded."
   (global-set-key [S-up] 'windmove-up)
   (global-set-key [S-down] 'windmove-down)
 
-  (setq magit-diff-refine-hunk 'all)
+  (setq magit-diff-refine-hunk t)
   (setq magit-log-arguments '("-n256" "--graph" "--decorate" "--color"))
 
   (rvm-use-default)
