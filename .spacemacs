@@ -393,6 +393,8 @@ before packages are loaded."
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-attr-indent-offset 2)
 
+  (add-to-list 'auto-mode-alist '("\\.arb\\'" . enh-ruby-mode))
+
   (add-hook 'web-mode-hook 'auto-complete-mode)
 
   (add-hook 'slim-mode-hook 'highlight-indentation-current-column-mode)
