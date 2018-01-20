@@ -374,6 +374,8 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq spaceline-all-the-icons-eyebrowse-workspace-p nil)
+  (setq spaceline-all-the-icons-buffer-position-p t)
+
   (golden-ratio-mode 1)
 
   (setq org-bullets-bullet-list '("▶" "■" "◆" "▲"))
