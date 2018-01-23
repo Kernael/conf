@@ -373,6 +373,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (global-rbenv-mode)
+
   (setq spaceline-all-the-icons-eyebrowse-workspace-p nil)
   (setq spaceline-all-the-icons-buffer-position-p t)
   (setq spaceline-minor-modes-p nil)
@@ -388,8 +390,6 @@ before packages are loaded."
 
   (setq magit-diff-refine-hunk t)
   (setq magit-log-arguments '("-n256" "--graph" "--decorate" "--color"))
-
-  (rvm-use-default)
 
   (defun remove-enh-magic-comment ()
     (remove-hook 'before-save-hook 'enh-ruby-mode-set-encoding t))

@@ -123,8 +123,6 @@ if ! [ -n "$TMUX" ]; then
     tmux
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-
 export ANDROID_HOME=${HOME}/Library/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
@@ -140,3 +138,5 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 export ERL_AFLAGS="-kernel shell_history enabled"
+
+eval "$(rbenv init -)"
