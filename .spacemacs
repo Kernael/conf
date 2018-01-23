@@ -154,7 +154,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(all-the-icons :separator arrow :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator utf-8 :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -375,6 +375,7 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq spaceline-all-the-icons-eyebrowse-workspace-p nil)
   (setq spaceline-all-the-icons-buffer-position-p t)
+  (setq spaceline-minor-modes-p nil)
 
   (golden-ratio-mode 1)
 
