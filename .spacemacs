@@ -377,6 +377,7 @@ before packages are loaded."
 
   (setq spaceline-all-the-icons-eyebrowse-workspace-p nil)
   (setq spaceline-all-the-icons-buffer-position-p t)
+  (setq spaceline-projectile-root-p t)
   (setq spaceline-minor-modes-p nil)
 
   (golden-ratio-mode 1)
