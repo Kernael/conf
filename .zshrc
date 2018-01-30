@@ -112,10 +112,25 @@ function dontpanic {
 alias dontpanic=dontpanic
 
 function search {
-    find . -name "*$1*"
+    if [ -z "$2" ]; then
+        find . -name "*$1*"
+    else
+        find $1 -name "*$2*"
+    fi
 }
 
 alias search=search
+
+function spam {
+    while true
+    do
+        clear
+        eval $1
+        sleep 2
+    done
+}
+
+alias spam=spam
 
 export HISTSIZE=100000
 
