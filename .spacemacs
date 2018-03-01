@@ -79,7 +79,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(yasnippet overseer)
+   dotspacemacs-excluded-packages '(yasnippet overseer auto-yasnippet yasnippet-snippets)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
