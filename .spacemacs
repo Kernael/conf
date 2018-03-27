@@ -73,13 +73,13 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(yasnippet-snippets)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(overseer)
+   dotspacemacs-excluded-packages '(overseer yasnippet-snippets auto-yasnippet yasnippet)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -481,8 +481,6 @@ before packages are loaded."
   (setq web-mode-attr-indent-offset 2)
 
   (add-to-list 'auto-mode-alist '("\\.arb\\'" . enh-ruby-mode))
-
-  (add-hook 'web-mode-hook 'auto-complete-mode)
 
   (add-hook 'slim-mode-hook 'highlight-indentation-current-column-mode)
   (add-hook 'web-mode-hook 'highlight-indentation-current-column-mode)
