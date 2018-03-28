@@ -124,6 +124,14 @@ alias search=search
 function spam {
     while true
     do
+        eval $1
+        sleep 2
+    done
+}
+
+function spamc {
+    while true
+    do
         clear
         eval $1
         sleep 2
@@ -131,6 +139,7 @@ function spam {
 }
 
 alias spam=spam
+alias spamc=spamc
 
 export HISTSIZE=100000
 
