@@ -97,6 +97,8 @@ alias ..='cd ..'
 alias bex="bundle exec"
 alias ec="emacsclient --no-wait"
 
+unalias rg
+
 function dontpanic {
     while true
     do
