@@ -186,7 +186,7 @@ It should only modify the values of Spacemacs settings."
    ;; to create your own spaceline theme. Value can be a symbol or list with\
    ;; additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator utf-8 :separator-scale 1.0)
+   dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -526,6 +526,7 @@ before packages are loaded."
   (evil-ex-define-cmd "ESlintDisable" 'eslint-disable)
 
   (setq-default flycheck-disabled-checkers '(ruby-reek))
+  (setq powerline-image-apple-rgb t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
