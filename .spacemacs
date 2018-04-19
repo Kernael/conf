@@ -484,7 +484,6 @@ before packages are loaded."
   (add-hook 'slim-mode-hook 'highlight-indentation-current-column-mode)
   (add-hook 'web-mode-hook 'highlight-indentation-current-column-mode)
   (add-hook 'yaml-mode-hook 'highlight-indentation-current-column-mode)
-  (add-hook 'enh-ruby-mode-hook 'highlight-indentation-current-column-mode)
 
   (defun my-rainbow-mode-hook ()
     (rainbow-mode 1)
