@@ -115,13 +115,23 @@ alias dontpanic=dontpanic
 
 function search {
     if [ -z "$2" ]; then
+        rg . --files -g "*$1*" --no-ignore
+    else
+        rg $1 --files -g "*$2*" --no-ignore
+    fi
+}
+
+alias search=search
+
+function findfile {
+    if [ -z "$2" ]; then
         find . -name "*$1*"
     else
         find $1 -name "*$2*"
     fi
 }
 
-alias search=search
+alias findfile=findfile
 
 function spam {
     while true
