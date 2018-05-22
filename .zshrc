@@ -153,6 +153,8 @@ function spamc {
 alias spam=spam
 alias spamc=spamc
 
+alias emacs="/Users/ebardet/emacs27/emacs/src/emacs --dump-file=/Users/ebardet/.emacs.d/.cache/dumps/spacemacs.pdmp &"
+
 export HISTSIZE=100000
 
 if ! [ -n "$TMUX" ]; then
@@ -160,8 +162,7 @@ if ! [ -n "$TMUX" ]; then
 fi
 
 export ANDROID_HOME=${HOME}/Library/Android/Sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+export PATH=/usr/local/opt/texinfo/bin:${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
 
