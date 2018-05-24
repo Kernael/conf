@@ -337,10 +337,10 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
    ;; If non-nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native t
+   dotspacemacs-fullscreen-use-non-native nil
 
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
@@ -558,6 +558,8 @@ before packages are loaded."
 
   (setq-default flycheck-disabled-checkers '(ruby-reek))
   (setq powerline-image-apple-rgb t)
+
+  (spacemacs/toggle-fullscreen-frame-on)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
