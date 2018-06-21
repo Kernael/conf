@@ -95,8 +95,6 @@ done
 alias l='ls -lah'
 alias ..='cd ..'
 alias bex="bundle exec"
-alias emacs="/Users/ebardet/emacs27/emacs/src/emacs --dump-file=/Users/ebardet/.emacs.d/.cache/dumps/spacemacs.pdmp"
-alias emacsclient="/Users/ebardet/emacs27/emacs/nextstep/Emacs.app/Contents/MacOS/bin/emacsclient"
 alias ec="emacsclient --no-wait"
 
 unalias rg
