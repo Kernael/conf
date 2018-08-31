@@ -59,11 +59,12 @@ This function should only modify configuration layer settings."
      colors
      yaml
      html
-     javascript
+     (javascript :variables javascript-backend 'tern)
      erlang
      (osx :variables osx-option-as 'none)
      kernael
      react
+     lsp
      )
 
    ;; List of additional packages that will be installed without being
@@ -543,6 +544,41 @@ before packages are loaded."
   (add-hook 'css-mode-hook 'my-rainbow-mode-hook)
 
   (setq ruby-insert-encoding-magic-comment nil)
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; REPL history
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (defun comint-write-history-on-exit (process event)
+    (comint-write-input-ring)
+    (let ((buf (process-buffer process)))
+      (when (buffer-live-p buf)
+        (with-current-buffer buf
+          (insert (format "\nProcess %s %s" process event))))))
+
+  (defun turn-on-comint-history-rails ()
+    (let ((process (get-buffer-process (current-buffer))))
+      (when process
+        (setq comint-input-ring-file-name
+              (format "~/.emacs.d/inferior-rails-history"
+                      (process-name process)))
+        (comint-read-input-ring)
+        (set-process-sentinel process
+                              #'comint-write-history-on-exit))))
+
+  (add-hook 'inf-ruby-mode-hook 'turn-on-comint-history-rails)
+  (add-hook 'kill-buffer-hook 'comint-write-input-ring)
+
+  (defun mapc-buffers (fn)
+    (mapc (lambda (buffer)
+            (with-current-buffer buffer
+              (funcall fn)))
+          (buffer-list)))
+
+  (defun comint-write-input-ring-all-buffers ()
+    (mapc-buffers 'comint-write-input-ring))
+
+  (add-hook 'kill-emacs-hook 'comint-write-input-ring-all-buffers)
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -559,7 +595,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (impatient-mode helm-company magit yasnippet-snippets yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons solarized-theme smeargle slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails prettier-js popwin persp-mode password-generator paradox overseer osx-trash osx-dictionary origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-elixir neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit ghub gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-cleverparens evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode diminish counsel-projectile company-web company-tern company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (iedit lsp-mode magit yasnippet-snippets yaml-mode ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection spaceline-all-the-icons solarized-theme smeargle slim-mode seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails prettier-js popwin persp-mode password-generator paradox overseer osx-trash osx-dictionary origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-elixir neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lsp-ui lsp-javascript-typescript lorem-ipsum livid-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit ghub gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-cleverparens evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode diminish counsel-projectile company-web company-tern company-statistics company-lsp column-enforce-mode color-identifiers-mode clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
