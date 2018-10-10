@@ -7,3 +7,4 @@
 !.spacemacs
 !.oh-my-zsh/themes/kernael.zsh-theme
 !.emacs.d/private/kernael/packages.el
+!.pryrc
