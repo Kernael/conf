@@ -585,17 +585,12 @@ before packages are loaded."
   (add-hook 'kill-emacs-hook 'comint-write-input-ring-all-buffers)
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  ;; Make windmove work in org-mode:
+  (add-hook 'org-shiftup-final-hook 'windmove-up)
+  (add-hook 'org-shiftleft-final-hook 'windmove-left)
+  (add-hook 'org-shiftdown-final-hook 'windmove-down)
+  (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; fix neotree
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  (with-eval-after-load "helm"
-    (defun helm-persistent-action-display-window (&optional split-onewindow)
-      "Return the window that will be used for persistent action.
-If SPLIT-ONEWINDOW is non-`nil' window is split in persistent action."
-      (with-helm-window
-        (setq helm-persistent-action-display-window (get-mru-window)))))
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -612,7 +607,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tide orgit org-brain lsp-ui google-translate evil-magit evil-goggles dumb-jump doom-modeline counsel-projectile counsel ivy company-lsp auto-yasnippet flycheck request helm helm-core avy typescript-mode lsp-mode magit git-commit ghub org-plus-contrib hydra yasnippet-snippets yaml-mode ws-butler writeroom-mode with-editor winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package treepy toc-org tagedit symon swiper string-inflection spaceline-all-the-icons solarized-theme smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails prettier-js popwin persp-mode password-generator paradox pandoc-mode ox-pandoc overseer osx-trash osx-dictionary origami org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lsp-javascript-typescript lorem-ipsum livid-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphql golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav eldoc-eval editorconfig dotenv-mode diminish csv-mode company-web company-tern company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode chruby centered-cursor-mode bundler auto-highlight-symbol auto-compile alchemist aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (yasnippet-snippets web-mode tide orgit org-brain lsp-ui evil-surround evil-nerd-commenter doom-modeline company-lsp ace-link counsel swiper ivy smartparens flycheck company helm lsp-mode magit ghub markdown-mode ht org-plus-contrib yaml-mode ws-butler writeroom-mode winum which-key web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package treepy toc-org tagedit symon string-inflection spaceline-all-the-icons solarized-theme smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode robe rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails prettier-js popwin persp-mode password-generator paradox pandoc-mode ox-pandoc overseer osx-trash osx-dictionary origami org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file ob-elixir neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lsp-javascript-typescript lorem-ipsum livid-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag graphql google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-commit gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-org evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu erlang emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode diminish csv-mode counsel-projectile company-web company-tern company-statistics column-enforce-mode color-identifiers-mode clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist aggressive-indent ace-window ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

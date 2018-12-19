@@ -161,9 +161,16 @@ if ! [ -n "$TMUX" ]; then
     tmux
 fi
 
+# Android Studio
 export ANDROID_HOME=${HOME}/Library/Android/Sdk
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home
+# React Native Android
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home
 
 export NVM_DIR="$HOME/.nvm"
 function nvm {
