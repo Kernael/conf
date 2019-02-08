@@ -551,46 +551,12 @@ before packages are loaded."
   (setq ruby-insert-encoding-magic-comment nil)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; REPL history
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  (defun comint-write-history-on-exit (process event)
-    (comint-write-input-ring)
-    (let ((buf (process-buffer process)))
-      (when (buffer-live-p buf)
-        (with-current-buffer buf
-          (insert (format "\nProcess %s %s" process event))))))
-
-  (defun turn-on-comint-history-rails ()
-    (let ((process (get-buffer-process (current-buffer))))
-      (when process
-        (setq comint-input-ring-file-name
-              (format "~/.emacs.d/inferior-rails-history"
-                      (process-name process)))
-        (comint-read-input-ring)
-        (set-process-sentinel process
-                              #'comint-write-history-on-exit))))
-
-  (add-hook 'inf-ruby-mode-hook 'turn-on-comint-history-rails)
-  (add-hook 'kill-buffer-hook 'comint-write-input-ring)
-
-  (defun mapc-buffers (fn)
-    (mapc (lambda (buffer)
-            (with-current-buffer buffer
-              (funcall fn)))
-          (buffer-list)))
-
-  (defun comint-write-input-ring-all-buffers ()
-    (mapc-buffers 'comint-write-input-ring))
-
-  (add-hook 'kill-emacs-hook 'comint-write-input-ring-all-buffers)
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; Make windmove work in org-mode:
   (add-hook 'org-shiftup-final-hook 'windmove-up)
   (add-hook 'org-shiftleft-final-hook 'windmove-left)
   (add-hook 'org-shiftdown-final-hook 'windmove-down)
   (add-hook 'org-shiftright-final-hook 'windmove-right)
-
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
