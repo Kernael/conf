@@ -172,15 +172,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_192.jdk/Contents/Home
 
-export NVM_DIR="$HOME/.nvm"
-function nvm {
-    if [ -s "$NVM_DIR/nvm.sh" ]; then
-        . "$NVM_DIR/nvm.sh"
-        nvm use system
-        nvm $@
-    fi
-}
-
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
