@@ -97,8 +97,6 @@ alias ..='cd ..'
 alias bex="bundle exec"
 alias ec="emacsclient --no-wait"
 
-unalias rg
-
 function dontpanic {
     while true
     do
@@ -115,9 +113,9 @@ alias dontpanic=dontpanic
 
 function search {
     if [ -z "$2" ]; then
-        rg . --files -g "*$1*" --no-ignore
+        ag . -Ug "$1"
     else
-        rg $1 --files -g "*$2*" --no-ignore
+        ag $1 -Ug "$2"
     fi
 }
 
