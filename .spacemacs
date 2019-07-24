@@ -500,6 +500,19 @@ before packages are loaded."
   (global-set-key [S-up] 'windmove-up)
   (global-set-key [S-down] 'windmove-down)
 
+  (global-set-key [H-left] 'org-shiftleft)
+  (global-set-key [H-right] 'org-shiftright)
+  (global-set-key [H-up] 'org-shiftup)
+  (global-set-key [H-down] 'org-shiftdown)
+
+  (defun my-org-mode-hook ()
+    (unbind-key "S-<left>" org-mode-map)
+    (unbind-key "S-<right>" org-mode-map)
+    (unbind-key "S-<up>" org-mode-map)
+    (unbind-key "S-<down>" org-mode-map)
+    )
+  (add-hook 'org-mode-hook 'my-org-mode-hook)
+
   (setq magit-diff-refine-hunk t)
   (setq magit-log-arguments '("-n256" "--graph" "--decorate" "--color"))
   (setq magit-commit-show-diff nil)
@@ -563,14 +576,6 @@ before packages are loaded."
   (add-hook 'css-mode-hook 'my-rainbow-mode-hook)
 
   (setq ruby-insert-encoding-magic-comment nil)
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-  ;; Make windmove work in org-mode:
-  (add-hook 'org-shiftup-final-hook 'windmove-up)
-  (add-hook 'org-shiftleft-final-hook 'windmove-left)
-  (add-hook 'org-shiftdown-final-hook 'windmove-down)
-  (add-hook 'org-shiftright-final-hook 'windmove-right)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
