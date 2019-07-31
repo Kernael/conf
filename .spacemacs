@@ -562,6 +562,11 @@ before packages are loaded."
          )
   (evil-ex-define-cmd "ESlintDisable" 'eslint-disable)
 
+  (defun find-spec-other-file () (interactive)
+         (call-interactively 'projectile-find-implementation-or-test-other-window)
+         )
+  (evil-ex-define-cmd "a" 'find-spec-other-file)
+
   (setq-default flycheck-disabled-checkers '(ruby-reek))
 
   (setq mac-option-modifier 'none)
