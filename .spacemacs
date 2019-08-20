@@ -60,7 +60,7 @@ This function should only modify configuration layer settings."
      colors
      yaml
      html
-     (javascript :variables javascript-backend 'tern)
+     (javascript :variables javascript-backend 'lsp)
      erlang
      (osx :variables
           osx-option-as 'none
@@ -72,7 +72,7 @@ This function should only modify configuration layer settings."
      pandoc
      (typescript :variables typescript-backend 'lsp)
      emoji
-     (java :variables java-backend 'lsp)
+     ;; (java :variables java-backend 'lsp)
      dap
      )
 
