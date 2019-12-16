@@ -31,7 +31,7 @@
 (defconst kernael-packages
   '(all-the-icons))
 
-(defun kernael/init-all-the-icons ()
+(defun kernael/post-init-all-the-icons ()
   (use-package all-the-icons
     :config (setq neo-theme 'icons)))
 ;;; packages.el ends here

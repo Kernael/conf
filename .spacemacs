@@ -40,7 +40,10 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     auto-completion
+     (auto-completion
+      :variables
+      auto-completion-tab-key-behavior nil
+      )
      ;; better-defaults
      emacs-lisp
      git
@@ -470,6 +473,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
+  (defvar evil-mc-cursors-map nil)
   )
 
 (defun dotspacemacs/user-load ()
@@ -581,6 +585,15 @@ before packages are loaded."
 
   (setq lsp-ui-sideline-enable nil)
   (setq lsp-ui-doc-enable nil)
+
+  (add-hook 'before-save-hook
+            (lambda ()
+              (when buffer-file-name
+                (let ((dir (file-name-directory buffer-file-name)))
+                  (when (and (not (file-exists-p dir))
+                    (make-directory dir t)))))))
+
+  (setq neo-theme 'icons)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -603,5 +616,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(diff-refine-added ((t (:background "#c2c264" :foreground "#5b6e35"))))
+ '(diff-refine-removed ((t (:background "#e68463" :foreground "#8e433d")))))
 )

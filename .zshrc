@@ -156,7 +156,7 @@ export PATH=/usr/local/bin:/usr/local/opt/texinfo/bin:${PATH}:${ANDROID_HOME}/pl
 export HISTSIZE=100000
 
 if ! [ -n "$TMUX" ]; then
-    tmux
+    tmux a || tmux
 fi
 
 # Android Studio
