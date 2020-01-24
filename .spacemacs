@@ -154,8 +154,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-use-spacelpa nil
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
-   ;; (default nil)
-   dotspacemacs-verify-spacelpa-archives nil
+   ;; (default t)
+   dotspacemacs-verify-spacelpa-archives t
 
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
@@ -532,6 +532,7 @@ before packages are loaded."
   (defun binding-for-mode ()
     (cond ((string-equal "elixir-mode" major-mode) "require IEx; IEx.pry")
           ((string-equal "ruby-mode" major-mode) "require 'pry'; binding.pry")
+          ((string-equal "js2-mode" major-mode) "debugger;")
           ((string-equal "web-mode" major-mode) "<% require 'pry'; binding.pry %>")
           (t "none")))
   (defun pry-binding () (interactive)
