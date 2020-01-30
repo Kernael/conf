@@ -595,6 +595,16 @@ before packages are loaded."
                     (make-directory dir t)))))))
 
   (setq neo-theme 'icons)
+
+  ;; check when opening large files
+  (defun spacemacs/check-large-file ()
+    (when (> (buffer-size) (* 1024 1024))
+      (when (y-or-n-p "Open file literally?")
+        (setq buffer-read-only t)
+        (buffer-disable-undo)
+        (fundamental-mode))))
+
+  (add-hook 'find-file-hook 'spacemacs/check-large-file)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
