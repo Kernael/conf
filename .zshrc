@@ -151,6 +151,8 @@ function spamc {
 alias spam=spam
 alias spamc=spamc
 
+alias ngrok=~/ngrok
+
 export PATH=/usr/local/bin:/usr/local/opt/texinfo/bin:${PATH}:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/:/Library/TeX/texbin
 
 export HISTSIZE=100000
