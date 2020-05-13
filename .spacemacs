@@ -57,7 +57,9 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      syntax-checking
      ;; version-control
-     elixir
+     ;; (elixir :variables elixir-backend 'lsp elixir-ls-path "/Users/eliotbardet/work/config/elixir-ls/rel")
+     (elixir :variables elixir-backend 'alchemist)
+     phoenix
      ruby
      ruby-on-rails
      colors
@@ -72,6 +74,7 @@ This function should only modify configuration layer settings."
      react
      lsp
      csv
+     latex
      pandoc
      (typescript :variables typescript-backend 'lsp)
      emoji
@@ -605,6 +608,8 @@ before packages are loaded."
         (fundamental-mode))))
 
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
+
+  (add-hook 'markdown-mode-hook 'pandoc-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -621,12 +626,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (dap-mode bui tree-mode robe lsp-ui doom-modeline aggressive-indent lsp-mode counsel helm all-the-icons yasnippet-snippets yaml-mode ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tide tagedit symon swiper string-inflection spaceline-all-the-icons solarized-theme smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails prettier-js popwin persp-mode password-generator paradox pandoc-mode ox-pandoc overseer osx-trash osx-dictionary origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-elixir neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu erlang emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode diminish csv-mode counsel-projectile company-web company-tern company-statistics company-lsp company-emoji column-enforce-mode color-identifiers-mode clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist ace-window ace-link ace-jump-helm-line ac-ispell))))
+    (company-reftex company-auctex auctex-latexmk auctex dap-mode bui tree-mode robe lsp-ui doom-modeline aggressive-indent lsp-mode counsel helm all-the-icons yasnippet-snippets yaml-mode ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tide tagedit symon swiper string-inflection spaceline-all-the-icons solarized-theme smeargle slim-mode shrink-path seeing-is-believing scss-mode sass-mode rvm ruby-tools ruby-test-mode ruby-refactor ruby-hash-syntax rubocop rspec-mode rjsx-mode reveal-in-osx-finder restart-emacs rbenv rainbow-mode rainbow-identifiers rainbow-delimiters pug-mode projectile-rails prettier-js popwin persp-mode password-generator paradox pandoc-mode ox-pandoc overseer osx-trash osx-dictionary origami orgit org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file ob-elixir neotree nameless move-text mmm-mode minitest markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode link-hint launchctl json-navigator json-mode js2-refactor js-doc indent-guide impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-mix flycheck-credo flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu erlang emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav eldoc-eval editorconfig dumb-jump dotenv-mode diminish csv-mode counsel-projectile company-web company-tern company-statistics company-lsp company-emoji column-enforce-mode color-identifiers-mode clean-aindent-mode chruby centered-cursor-mode bundler auto-yasnippet auto-highlight-symbol auto-compile alchemist ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
  '(diff-refine-added ((t (:background "#c2c264" :foreground "#5b6e35"))))
  '(diff-refine-removed ((t (:background "#e68463" :foreground "#8e433d")))))
 )
