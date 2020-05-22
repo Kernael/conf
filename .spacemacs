@@ -60,7 +60,7 @@ This function should only modify configuration layer settings."
      ;; (elixir :variables elixir-backend 'lsp elixir-ls-path "/Users/eliotbardet/work/config/elixir-ls/rel")
      (elixir :variables elixir-backend 'alchemist)
      phoenix
-     ruby
+     (ruby :variables ruby-version-manager 'rbenv)
      ruby-on-rails
      colors
      yaml
