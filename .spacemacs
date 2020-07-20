@@ -26,7 +26,6 @@ This function should only modify configuration layer settings."
    ;; a layer lazily. (default t)
    dotspacemacs-ask-for-lazy-installation t
 
-   ;; If non-nil layers with lazy install support are lazy installed.
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
    dotspacemacs-configuration-layer-path '()
@@ -49,7 +48,8 @@ This function should only modify configuration layer settings."
      git
      markdown
      multiple-cursors
-     neotree
+     ;; neotree
+     treemacs
      org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -72,14 +72,14 @@ This function should only modify configuration layer settings."
           osx-right-command-as 'meta)
      kernael
      react
-     lsp
-     csv
-     latex
-     pandoc
-     (typescript :variables typescript-backend 'lsp)
      emoji
+     lsp
+     ;; csv
+     ;; latex
+     ;; pandoc
+     ;; (typescript :variables typescript-backend 'lsp)
      ;; (java :variables java-backend 'lsp)
-     dap
+     ;; dap
      )
 
    ;; List of additional packages that will be installed without being
