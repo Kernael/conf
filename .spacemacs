@@ -47,10 +47,10 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      markdown
-     multiple-cursors
+     ;; multiple-cursors
      ;; neotree
      treemacs
-     org
+     ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -58,15 +58,15 @@ This function should only modify configuration layer settings."
      syntax-checking
      ;; version-control
      ;; (elixir :variables elixir-backend 'lsp elixir-ls-path "/Users/eliotbardet/work/config/elixir-ls/rel")
-     (elixir :variables elixir-backend 'alchemist)
-     phoenix
+     ;; (elixir :variables elixir-backend 'alchemist)
+     ;; phoenix
      (ruby :variables ruby-version-manager 'rbenv)
      ruby-on-rails
      colors
      yaml
      html
      (javascript :variables javascript-backend 'lsp)
-     erlang
+     ;; erlang
      (osx :variables
           osx-option-as 'none
           osx-right-command-as 'meta)
@@ -77,9 +77,9 @@ This function should only modify configuration layer settings."
      ;; csv
      ;; latex
      ;; pandoc
-     ;; (typescript :variables typescript-backend 'lsp)
+     (typescript :variables typescript-backend 'lsp)
      ;; (java :variables java-backend 'lsp)
-     ;; dap
+     dap
      )
 
    ;; List of additional packages that will be installed without being
@@ -95,7 +95,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(yasnippet yasnippet-snippets)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -129,9 +129,9 @@ It should only modify the values of Spacemacs settings."
    ;; portable dumper in the cache directory under dumps sub-directory.
    ;; To load it when starting Emacs add the parameter `--dump-file'
    ;; when invoking Emacs 27.1 executable on the command line, for instance:
-   ;;   ./emacs --dump-file=~/.emacs.d/.cache/dumps/spacemacs.pdmp
-   ;; (default spacemacs.pdmp)
-   dotspacemacs-emacs-dumper-dump-file "spacemacs.pdmp"
+   ;;   ./emacs --dump-file=$HOME/.emacs.d/.cache/dumps/spacemacs-27.1.pdmp
+   ;; (default spacemacs-27.1.pdmp)
+   dotspacemacs-emacs-dumper-dump-file (format "spacemacs-%s.pdmp" emacs-version)
 
    ;; If non-nil ELPA repositories are contacted via HTTPS whenever it's
    ;; possible. Set it to nil if you have no way to use HTTPS in your
@@ -150,6 +150,13 @@ It should only modify the values of Spacemacs settings."
    ;; performance issues due to garbage collection operations.
    ;; (default '(100000000 0.1))
    dotspacemacs-gc-cons '(100000000 0.1)
+
+   ;; Set `read-process-output-max' when startup finishes.
+   ;; This defines how much data is read from a foreign process.
+   ;; Setting this >= 1 MB should increase performance for lsp servers
+   ;; in emacs 27.
+   ;; (default (* 1024 1024))
+   dotspacemacs-read-process-output-max (* 1024 1024)
 
    ;; If non-nil then Spacelpa repository is the primary source to install
    ;; a locked version of packages. If nil then Spacemacs will install the
@@ -178,6 +185,11 @@ It should only modify the values of Spacemacs settings."
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
    dotspacemacs-editing-style 'vim
+
+   ;; If non-nil show the version string in the Spacemacs buffer. It will
+   ;; appear as (spacemacs version)@(emacs version)
+   ;; (default t)
+   dotspacemacs-startup-buffer-show-version t
 
    ;; Specify the startup banner. Default value is `official', it displays
    ;; the official spacemacs logo. An integer value is the index of text
@@ -255,8 +267,10 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-major-mode-leader-key ","
 
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m")
-   dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   ;; (default "C-M-m" for terminal mode, "<M-return>" for GUI mode).
+   ;; Thus M-RET should work as leader key in both GUI and terminal modes.
+   ;; C-M-m also should work in terminal mode, but not in GUI mode.
+   dotspacemacs-major-mode-emacs-leader-key (if window-system "<M-return>" "C-M-m")
 
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs `C-i', `TAB' and `C-m', `RET'.
@@ -453,6 +467,14 @@ It should only modify the values of Spacemacs settings."
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
+
+   ;; If non nil activate `clean-aindent-mode' which tries to correct
+   ;; virtual indentation of simple modes. This can interfer with mode specific
+   ;; indent handling like has been reported for `go-mode'.
+   ;; If it does deactivate it here.
+   ;; (default t)
+   dotspacemacs-use-clean-aindent-mode t
+
    ;; Either nil or a number of seconds. If non-nil zone out after the specified
    ;; number of seconds. (default nil)
    dotspacemacs-zone-out-when-idle nil
@@ -460,7 +482,11 @@ It should only modify the values of Spacemacs settings."
    ;; Run `spacemacs/prettify-org-buffer' when
    ;; visiting README.org files of Spacemacs.
    ;; (default nil)
-   dotspacemacs-pretty-docs nil))
+   dotspacemacs-pretty-docs nil
+
+   ;; If nil the home buffer shows the full path of agenda items
+   ;; and todos. If non nil only the file name is shown.
+   dotspacemacs-home-shorten-agenda-source nil))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -476,7 +502,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (defvar evil-mc-cursors-map nil)
+  (setq rbenv-show-active-ruby-in-modeline nil)
   )
 
 (defun dotspacemacs/user-load ()
@@ -497,8 +523,6 @@ before packages are loaded."
 
   (golden-ratio-mode 1)
 
-  (setq org-bullets-bullet-list '(">" "■" "◆" "▲"))
-
   (global-set-key [S-left] 'windmove-left)
   (global-set-key [S-right] 'windmove-right)
   (global-set-key [S-up] 'windmove-up)
@@ -508,14 +532,6 @@ before packages are loaded."
   (global-set-key [H-right] 'org-shiftright)
   (global-set-key [H-up] 'org-shiftup)
   (global-set-key [H-down] 'org-shiftdown)
-
-  (defun my-org-mode-hook ()
-    (unbind-key "S-<left>" org-mode-map)
-    (unbind-key "S-<right>" org-mode-map)
-    (unbind-key "S-<up>" org-mode-map)
-    (unbind-key "S-<down>" org-mode-map)
-    )
-  (add-hook 'org-mode-hook 'my-org-mode-hook)
 
   (setq magit-diff-refine-hunk t)
   (setq magit-log-arguments '("-n256" "--graph" "--decorate" "--color"))
@@ -558,15 +574,6 @@ before packages are loaded."
          )
   (evil-ex-define-cmd "Reactotron" 'reactotron-log)
 
-  (defun eslint-disable () (interactive)
-         (evil-open-above 1)
-         (insert "// eslint-disable-next-line ")
-         (call-interactively 'evil-indent-line)
-         (evil-normal-state)
-         (save-buffer)
-         )
-  (evil-ex-define-cmd "ESlintDisable" 'eslint-disable)
-
   (defun find-spec-other-file () (interactive)
          (call-interactively 'projectile-find-implementation-or-test-other-window)
          )
@@ -587,17 +594,12 @@ before packages are loaded."
 
   (setq ruby-insert-encoding-magic-comment nil)
 
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-doc-enable nil)
-
   (add-hook 'before-save-hook
             (lambda ()
               (when buffer-file-name
                 (let ((dir (file-name-directory buffer-file-name)))
                   (when (and (not (file-exists-p dir))
                     (make-directory dir t)))))))
-
-  (setq neo-theme 'icons)
 
   ;; check when opening large files
   (defun spacemacs/check-large-file ()
@@ -609,7 +611,9 @@ before packages are loaded."
 
   (add-hook 'find-file-hook 'spacemacs/check-large-file)
 
-  (add-hook 'markdown-mode-hook 'pandoc-mode)
+  (setq treemacs-lock-width t)
+
+  (setq rbenv-show-active-ruby-in-modeline nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
