@@ -46,7 +46,7 @@ This function should only modify configuration layer settings."
      ;; better-defaults
      emacs-lisp
      git
-     markdown
+     ;; markdown
      ;; multiple-cursors
      ;; neotree
      treemacs
