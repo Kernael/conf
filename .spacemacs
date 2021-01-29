@@ -65,21 +65,21 @@ This function should only modify configuration layer settings."
      colors
      yaml
      html
-     (javascript :variables javascript-backend 'lsp)
+     ;; (javascript :variables javascript-backend 'lsp)
      ;; erlang
      (osx :variables
           osx-option-as 'none
           osx-right-command-as 'meta)
      kernael
-     react
+     ;; react
      emoji
-     lsp
+     ;; lsp
      ;; csv
      ;; latex
      ;; pandoc
-     (typescript :variables typescript-backend 'lsp)
+     ;; (typescript :variables typescript-backend 'lsp)
      ;; (java :variables java-backend 'lsp)
-     dap
+     ;; dap
      )
 
    ;; List of additional packages that will be installed without being
@@ -226,8 +226,8 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(solarized-light
-                         solarized-dark)
+   dotspacemacs-themes '(solarized-gruvbox-light
+                         solarized-gruvbox-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -436,7 +436,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("ag")
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
