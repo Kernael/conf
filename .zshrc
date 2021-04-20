@@ -190,4 +190,4 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-export EDITOR="ec"
+export EDITOR="/usr/local/bin/emacsclient --no-wait"
