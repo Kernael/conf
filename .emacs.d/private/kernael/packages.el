@@ -30,7 +30,4 @@
 ;;; Code:
 (defconst kernael-packages
   '())
-
-(defun kernael/post-init-all-the-icons ()
-  ())
 ;;; packages.el ends here
