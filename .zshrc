@@ -173,6 +173,8 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+export PATH=$PATH:${HOME}/.cargo/bin
+
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
